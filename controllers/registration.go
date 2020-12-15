@@ -32,7 +32,7 @@ func (c *RegistrationController) Post() {
 	err := models.CreateUser(params)
 
 	if err != nil {
-		// 
+		// TODO: Re-render the form instead of redirect
 		flash.Error(fmt.Sprint(err))
 	} else {
 		flash.Notice("User created successfully.")
