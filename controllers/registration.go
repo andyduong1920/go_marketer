@@ -29,7 +29,7 @@ func (c *RegistrationController) Post() {
 	params["email"] = c.GetString("email")
 	params["password"] = c.GetString("password")
 
-	_, err := models.CreateUser(params)
+	err := models.CreateUser(params)
 
 	if err != nil {
 		flash.Error(fmt.Sprint(err))

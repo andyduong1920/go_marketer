@@ -23,14 +23,14 @@ func (u *User) TableName() string {
 	return "users"
 }
 
-func CreateUser(params map[string]string) (int64, error) {
+func CreateUser(params map[string]string) error {
 	o := orm.NewOrm()
 
 	user := new(User)
 	user.Email = params["email"]
 	user.Password = params["password"]
 
-	id, err := o.Insert(user)
+	_, err := o.Insert(user)
 
-	return id, err
+	return err
 }
