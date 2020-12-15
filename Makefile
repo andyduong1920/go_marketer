@@ -8,3 +8,6 @@ start-dev:
 
 test:
 	go test -v -p 1 ./...
+
+docker-setup:
+	docker-compose -f docker-compose.dev.yml up -d
