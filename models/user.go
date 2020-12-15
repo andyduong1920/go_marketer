@@ -4,6 +4,7 @@ import (
 	"time"
 
 	"github.com/astaxie/beego/orm"
+	"github.com/astaxie/beego/validation"
 	"golang.org/x/crypto/bcrypt"
 )
 
@@ -30,10 +31,28 @@ func CreateUser(params map[string]string) error {
 	user := new(User)
 	user.Email = params["email"]
 
-	hashedPassword, _ := bcrypt.GenerateFromPassword([]byte(params["password"]), bcrypt.DefaultCost)
+	password := params["password"]
+	hashedPassword, _ := bcrypt.GenerateFromPassword([]byte(password), bcrypt.DefaultCost)
 	user.HashedPassword = string([]byte(hashedPassword))
 
-	_, err := o.Insert(user)
+	valid := validate(user, password)
 
-	return err
+	if valid.HasErrors() {
+		return valid.Errors[0]
+	} else {
+		_, err := o.Insert(user)
+
+		return err
+	}
+}
+
+func validate(user *User, password string) validation.Validation {
+	validator := validation.Validation{}
+
+	validator.Email(user.Email, "email")
+
+	validator.MinSize(password, 6, "password")
+	validator.MaxSize(password, 10, "password")
+
+	return validator
 }
