@@ -4,12 +4,13 @@ import (
 	"time"
 
 	"github.com/astaxie/beego/orm"
+	"golang.org/x/crypto/bcrypt"
 )
 
 type User struct {
-	Id       int
-	Email    string `orm:"unique"`
-	Password string
+	Id             int
+	Email          string `orm:"unique"`
+	HashedPassword string
 
 	CreatedAt time.Time `orm:"auto_now_add;type(datetime)"`
 	UpdatedAt time.Time `orm:"auto_now;type(datetime)"`
@@ -28,7 +29,9 @@ func CreateUser(params map[string]string) error {
 
 	user := new(User)
 	user.Email = params["email"]
-	user.Password = params["password"]
+
+	hashedPassword, _ := bcrypt.GenerateFromPassword([]byte(params["password"]), bcrypt.DefaultCost)
+	user.HashedPassword = string([]byte(hashedPassword))
 
 	_, err := o.Insert(user)
 
