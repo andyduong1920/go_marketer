@@ -30,7 +30,7 @@ func main() {
 	err := orm.RunSyncdb("default", false, true)
 
 	if err != nil {
-		fmt.Println(err)
+		log.Fatal(fmt.Sprintf("Failed to sync the database %v", err))
 	}
 
 	beego.Run()
