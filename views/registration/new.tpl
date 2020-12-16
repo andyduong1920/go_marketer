@@ -14,11 +14,6 @@
   </div>
 
   <div>
-    <button class="btn btn-primary" type="submit">Register</button>
+    <button class="btn btn-primary mt-3" type="submit">Register</button>
   </div>
 </form>
-
-<div class="mt-3">
-  <a href="/login">Login</a> |
-  <a href="/reset_password">Forgot your password?</a>
-</div>

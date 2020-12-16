@@ -15,7 +15,7 @@
     {{.Notification}}
     
     <div class="app-layout">
-      <div class="content">
+      <div class="content d-flex justify-content-center">
         <div class="col-12 col-md-5 card">
           <div class="card-body">
             {{.LayoutContent}}
