@@ -25,11 +25,10 @@ func (c *RegistrationController) Get() {
 func (c *RegistrationController) Post() {
 	flash := beego.NewFlash()
 
-	params := make(map[string]string)
-	params["email"] = c.GetString("email")
-	params["password"] = c.GetString("password")
+	user := new(models.User)
+	user.Email = c.GetString("email")
 
-	err := models.CreateUser(params)
+	err := models.CreateUser(user, c.GetString("password"))
 
 	if err != nil {
 		// TODO: Re-render the form instead of redirect

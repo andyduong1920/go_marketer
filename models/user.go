@@ -25,13 +25,9 @@ func (u *User) TableName() string {
 	return "users"
 }
 
-func CreateUser(params map[string]string) error {
+func CreateUser(user *User, password string) error {
 	o := orm.NewOrm()
 
-	user := new(User)
-	user.Email = params["email"]
-
-	password := params["password"]
 	hashedPassword, _ := bcrypt.GenerateFromPassword([]byte(password), bcrypt.DefaultCost)
 	user.HashedPassword = string([]byte(hashedPassword))
 
