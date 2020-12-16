@@ -1,8 +1,6 @@
 <h1>Register</h1>
 
 <form action="/register" method="post">
-  <input name="_csrf_token" type="hidden" value="AzY2GiIhWggpEFRiImY9L1EXM3oJI2FzNrOlMP00dAeOeVtI4NuLPgY1" />
-
   <div class="form-group">
     <label for="user_email">Email</label>
     <input class="form-control" id="user_email" name="email" type="email" required="true" />

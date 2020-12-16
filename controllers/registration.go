@@ -2,8 +2,8 @@ package controllers
 
 import (
 	"fmt"
+
 	"goMarketer/models"
-	_ "goMarketer/models"
 
 	"github.com/astaxie/beego"
 )
