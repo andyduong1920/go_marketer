@@ -28,14 +28,14 @@ func (u *User) TableName() string {
 func CreateUser(user *User, password string) error {
 	o := orm.NewOrm()
 
-	hashedPassword, _ := bcrypt.GenerateFromPassword([]byte(password), bcrypt.DefaultCost)
-	user.HashedPassword = string([]byte(hashedPassword))
-
 	validation := validate(user, password)
 
 	if validation.HasErrors() {
 		return validation.Errors[0]
 	} else {
+		hashedPassword, _ := bcrypt.GenerateFromPassword([]byte(password), bcrypt.DefaultCost)
+		user.HashedPassword = string([]byte(hashedPassword))
+
 		_, err := o.Insert(user)
 
 		return err
