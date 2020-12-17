@@ -31,10 +31,10 @@ func CreateUser(user *User, password string) error {
 	hashedPassword, _ := bcrypt.GenerateFromPassword([]byte(password), bcrypt.DefaultCost)
 	user.HashedPassword = string([]byte(hashedPassword))
 
-	valid := validate(user, password)
+	validation := validate(user, password)
 
-	if valid.HasErrors() {
-		return valid.Errors[0]
+	if validation.HasErrors() {
+		return validation.Errors[0]
 	} else {
 		_, err := o.Insert(user)
 
