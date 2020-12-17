@@ -12,6 +12,12 @@
   make build-dependencies
   ```
 
+#### Start dependencies
+
+  ```sh
+  make docker-setup
+  ```
+
 #### Run the Go application for development
 
   ```sh
