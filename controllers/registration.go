@@ -2,6 +2,7 @@ package controllers
 
 import (
 	"fmt"
+	"html/template"
 
 	"goMarketer/models"
 
@@ -14,6 +15,8 @@ type RegistrationController struct {
 
 func (c *RegistrationController) Get() {
 	beego.ReadFromRequest(&c.Controller)
+
+	c.Data["xsrfdata"] = template.HTML(c.XSRFFormHTML())
 
 	c.Layout = "layouts/auth.tpl"
 	c.TplName = "registration/new.tpl"

@@ -1,6 +1,8 @@
 <h1>Register</h1>
 
 <form action="/register" method="post">
+  {{ .xsrfdata }}
+  
   <div class="form-group">
     <label for="user_email">Email</label>
     <input class="form-control" id="user_email" name="email" type="email" required="true" />
